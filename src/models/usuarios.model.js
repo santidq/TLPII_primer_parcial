@@ -16,6 +16,10 @@ const schemaUsuario = new Schema({
         require: true,
         min: 8,
         max: 16
+    },
+    isActive: {
+        type: Boolean,
+        default: true
     }
 }, {
     versionKey: false,

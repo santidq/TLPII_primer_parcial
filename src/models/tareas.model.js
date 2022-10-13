@@ -12,6 +12,14 @@ const schemaTareas = new Schema({
    userID: {
         type: Schema.Types.ObjectId,
         required: true
+   },
+   isActive: {
+    type: Boolean,
+    default: true
+   },
+   isDone: {
+    type: Boolean,
+    default: false
    }
 }, {
     versionKey: false,
