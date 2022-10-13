@@ -15,6 +15,8 @@ app.use(cors());
 
 //RUTAS
 app.use(require("./src/routes/auth.routes"))
+app.use(require("./src/routes/task.routes"))
+
 //PUERTO
 const port = 3000;
 
