@@ -1,5 +1,6 @@
 const Usuario = require("../models/usuarios.model")
 const bcrypt = require("bcrypt")
+const generartoken = require("../helpers/generartoken")
 const ctrl = {}
 
 
@@ -21,6 +22,27 @@ ctrl.registrarse = async(req, res)=>{
     }
 
     res.json("Usuario creado")
+}
+
+ctrl.login = async(req, res)=>{
+    const {usuario, contraseña} = req.body
+
+    const user = await Usuario.findOne({usuario})
+    
+    if(!user){
+        res.json("Usuario no encontrado")
+    }
+
+    const validarContraseña = bcrypt.compareSync(contraseña, user.contraseña)
+
+    if(!validarContraseña){
+        res.json("Contraseña incorrecta")
+    }
+
+    const token = await generartoken({uid: user._id});
+
+    res.json(token);
+
 }
 
 
