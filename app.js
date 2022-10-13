@@ -12,10 +12,10 @@ app.use(morgan('dev'));
 app.use(cors());
 
 //RUTAS
-
+app.use(require("./src/routes/auth.routes"))
 //PUERTO
-
 const port = 3000;
+
 app.listen(port, ()=>{console.log(`Servidor corriendo en el puerto ${port}`)})
 
 
