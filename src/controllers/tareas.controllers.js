@@ -19,4 +19,24 @@ ctrl.postTarea = async(req, res)=>{
     res.json("Tarea creada")
 }
 
+ctrl.getTarea = async(req,res)=>{
+    const obtenerTarea = await Tareas.find({userID: req.user._id})
+
+    res.json(obtenerTarea)
+}
+
+ctrl.putTarea = async(req, res)=>{
+    const {titulo, descripcion} = req.body
+    const id = req.params.id
+
+    const actualizarTarea = await Tareas.findByIdAndUpdate(id, {titulo, descripcion})
+
+    if(!actualizarTarea){
+        res.json("No se pudo actualizar la tarea")
+    }
+
+    res.json("Tarea actulizada")
+}
+
+
 module.exports = ctrl
